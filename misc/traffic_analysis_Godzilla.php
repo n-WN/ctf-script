@@ -29,7 +29,7 @@ $encrypted_data_list = [
 // 提取 Base64 编码的字符串, 为结果密文
 // 使其一一对应, 即可解码输出
 
-// 选择要解密的字符串（默认取第一个，可根据需要切换索引）
+// 选择要解密的字符串
 $encrypted_data_to_decrypt = $encrypted_data_list[2];
 
 // 解密函数 (与加密函数相同，因为XOR操作是可逆的)
