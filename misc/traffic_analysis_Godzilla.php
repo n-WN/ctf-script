@@ -6,9 +6,11 @@
 
 // 配置参数
 $key = '421eb7f1b8e4b3cf'; // 16位解密密钥
+// 使用 md5 哈希的前16个字符作为密钥
+// assert ($key === substr(md5('babyshell'), 0, 16), "key not match"); 
 
 // 硬编码的加密数据 (Base64编码后，再加密的数据)
-// IMPORTANT: Replace $encrypted_data_list with your actual string.
+// IMPORTANT: Replace 'YOUR_BASE64_ENCRYPTED_STRING_HERE' with your actual string.
 // This string is expected to be GZIP compressed, then XOR encrypted, then Base64 encoded.
 
 // https://buuoj.cn/challenges#[NewStarCTF%20%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93]%E8%BF%98%E6%98%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90
@@ -29,7 +31,7 @@ $encrypted_data_list = [
 // 提取 Base64 编码的字符串, 为结果密文
 // 使其一一对应, 即可解码输出
 
-// 选择要解密的字符串
+// 选择要解密的字符串（默认取第一个，可根据需要切换索引）
 $encrypted_data_to_decrypt = $encrypted_data_list[2];
 
 // 解密函数 (与加密函数相同，因为XOR操作是可逆的)
