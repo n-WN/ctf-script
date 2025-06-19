@@ -8,7 +8,7 @@
 $key = '421eb7f1b8e4b3cf'; // 16位解密密钥
 
 // 硬编码的加密数据 (Base64编码后，再加密的数据)
-// IMPORTANT: Replace 'YOUR_BASE64_ENCRYPTED_STRING_HERE' with your actual string.
+// IMPORTANT: Replace $encrypted_data_list with your actual string.
 // This string is expected to be GZIP compressed, then XOR encrypted, then Base64 encoded.
 
 // https://buuoj.cn/challenges#[NewStarCTF%20%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93]%E8%BF%98%E6%98%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90
