@@ -1,0 +1,147 @@
+# ~/.config/alacritty/alacritty.toml
+# Alacritty Configuration for macOS
+
+# General Settings
+[general]
+# Enable live config reload, so changes take effect without restarting Alacritty.
+live_config_reload = true
+# Set the working directory to the user's home directory.
+working_directory = "~/"
+
+# Window Settings
+[window]
+# Set a comfortable padding around the terminal content.
+padding = { x = 10, y = 10 }
+# Spread additional padding evenly.
+dynamic_padding = true
+# Make the window slightly transparent for a modern look.
+opacity = 0.9
+# Disable blur for a clearer, less "foggy" background.
+blur = true
+# Use buttonless decorations for a minimal macOS window.
+decorations = "Buttonless"
+# Start Alacritty in windowed mode.
+startup_mode = "Windowed"
+# Allow terminal applications to change the window title.
+dynamic_title = true
+# Make the Option key behave as Alt for improved keybinding compatibility.
+option_as_alt = "Both"
+
+# Font Settings
+[font]
+# Use your preferred font for regular text. Menlo is the macOS default.
+# IMPORTANT: Ensure "JetBrainsMono Nerd Font" is installed on your system.
+# If you don't have it, consider changing to "Menlo" or another installed font.
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+# Inherit family from normal, just set the style.
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+# Set a comfortable font size.
+size = 14.0
+# Adjust line spacing slightly for better readability.
+offset = { x = 0, y = 1 }
+glyph_offset = { x = 0, y = 0 } # Keep glyphs centered
+
+# Color Scheme (Dracula - a popular dark theme, with a deeper background)
+[colors]
+# These keys are direct children of [colors] for Alacritty 0.15.x
+draw_bold_text_with_bright_colors = true
+transparent_background_colors = true
+
+[colors.primary]
+foreground = "#F8F8F2"
+background = "#1B1B1B" # Changed to a deeper black, or try "#2D2A31" or "#282C34"
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "#F8F8F2"
+
+[colors.selection]
+text = "CellBackground"
+background = "#44475A"
+
+[colors.normal]
+black = "#21222C"
+red = "#FF5555"
+green = "#50FA7B"
+yellow = "#F1FA8C"
+blue = "#BD93F9"
+magenta = "#FF79C6"
+cyan = "#8BE9FD"
+white = "#F8F8F2"
+
+[colors.bright]
+black = "#6272A4"
+red = "#FF6E6E"
+green = "#69FF94"
+yellow = "#FFFFA5"
+blue = "#D6ACFF"
+magenta = "#FF92DF"
+cyan = "#A4FFFF"
+white = "#FFFFFF"
+
+# Scrolling
+[scrolling]
+# Increase scrollback history to keep more output.
+history = 50000
+# Scroll more lines per increment.
+multiplier = 3
+
+# Cursor
+[cursor]
+# Use a block cursor style.
+style = { shape = "Block", blinking = "On" }
+# Make the cursor hollow when the window is unfocused.
+unfocused_hollow = true
+# Set cursor thickness.
+thickness = 0.2
+
+# Terminal
+[terminal]
+# Use Zsh as the default shell with login arguments.
+shell = { program = "/bin/zsh", args = ["-l"] }
+# Allow copying to clipboard via OSC 52.
+osc52 = "OnlyCopy"
+
+# Mouse
+[mouse]
+# Hide the mouse cursor when typing.
+hide_when_typing = true
+# Mouse bindings - ensure this is the ONLY 'bindings = [...]' inside [mouse]
+bindings = [
+  { mouse = "Right", mods = "Control", action = "Paste" },
+]
+
+# Keyboard Bindings
+[keyboard]
+bindings = [
+  # New window with Command + N
+  { key = "N", mods = "Command", action = "CreateNewWindow" },
+  # New tab with Command + T
+  { key = "T", mods = "Command", action = "CreateNewTab" },
+  # Select next tab with Command + Option + Right Arrow
+  { key = "Right", mods = "Option", action = "SelectNextTab" },
+  # Select previous tab with Command + Option + Left Arrow
+  { key = "Left", mods = "Option", action = "SelectPreviousTab" },
+  # Command + Left Arrow: Move to the beginning of the line
+  { key = "Left", mods = "Command", action = "First" },
+  # Command + Right Arrow: Move to the end of the line
+  { key = "Right", mods = "Command", action = "Last" },
+  # Clear screen with Command + K (like many macOS apps)
+  { key = "K", mods = "Command", action = "ClearHistory" },
+  # Increase font size with Command + Plus
+  { key = "Equals", mods = "Command", action = "IncreaseFontSize" },
+  # Use "NumpadAdd" for numpad plus
+  { key = "NumpadAdd", mods = "Command", action = "IncreaseFontSize" },
+  # Decrease font size with Command + Minus
+  { key = "Minus", mods = "Command", action = "DecreaseFontSize" },
+  # Use "NumpadSubtract" for numpad minus
+  { key = "NumpadSubtract", mods = "Command", action = "DecreaseFontSize" },
+  # Reset font size with Command + 0
+  { key = "Key0", mods = "Command", action = "ResetFontSize" },
+  # Explicit macOS Copy/Paste (these actions ARE valid)
+  { key = "C", mods = "Command", action = "Copy" },
+  { key = "V", mods = "Command", action = "Paste" },
+  # REMOVED: { key = "A", mods = "Command", action = "Select" }, <-- This caused the "unknown keyboard action Select" error
+]
