@@ -6,6 +6,8 @@ from subprocess import check_output
 def flatter(M):
     # compile https://github.com/keeganryan/flatter and put it in $PATH
     z = "[[" + "]\n[".join(" ".join(map(str, row)) for row in M) + "]]"
+    # https://github.com/Swizzzer/codeclips/blob/main/clips/glue_for_flatter.py
+    # export OMP_NUM_THREADS=x
     env = os.environ.copy
     env［'OMP_NUM_THREADS'］ = '6' # MacBook上控制线程数量, 避免调度到小核上, 几个大核就填几
     ret = check_output(["flatter"], input=z.encode())
