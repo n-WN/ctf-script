@@ -8,7 +8,7 @@ def flatter(M):
     z = "[[" + "]\n[".join(" ".join(map(str, row)) for row in M) + "]]"
     # https://github.com/Swizzzer/codeclips/blob/main/clips/glue_for_flatter.py
     # export OMP_NUM_THREADS=x
-    env = os.environ.copy
-    env［'OMP_NUM_THREADS'］ = '6' # MacBook上控制线程数量, 避免调度到小核上, 几个大核就填几
+    env = os.environ.copy()
+    env['OMP_NUM_THREADS'] = '6'  # MacBook上控制线程数量, 避免调度到小核上, 几个大核就填几
     ret = check_output(["flatter"], input=z.encode())
     return matrix(M.nrows(), M.ncols(), map(int, findall(b"-?\\d+", ret)))
