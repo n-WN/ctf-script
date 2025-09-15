@@ -1,0 +1,25 @@
+services:
+  challenge:
+    container_name: ctf-challenge-shopping
+    # 只保留 build 指令，Compose 会自动构建并内部管理镜像
+    build: .
+    ports:
+      - "1337:1337"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "1337"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    read_only: true
+    tmpfs:
+      - /tmp

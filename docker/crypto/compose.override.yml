@@ -1,0 +1,7 @@
+services:
+  challenge:
+    develop:
+      watch:
+        - action: sync
+          path: ./challenge.py
+          target: /app/challenge.py
