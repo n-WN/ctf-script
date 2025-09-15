@@ -1,0 +1,27 @@
+# 可指定的镜像仓库前缀来拉取基础镜像
+FROM python:3.12-alpine
+
+# 步骤 2: 更换 Alpine 镜像源并安装系统依赖
+# 首先用 sed 命令将官方镜像替换为清华镜像，然后再执行更新与安装
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
+    apk update && \
+    apk add --no-cache socat gmp-dev mpfr-dev mpc1-dev
+
+# 步骤 3: 设置工作目录
+WORKDIR /app
+
+# 步骤 4: 复制脚本到容器中
+COPY challenge.py .
+
+# 步骤 5: 安装 Python 依赖 (使用清华大学镜像源加速)
+RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple pycryptodome gmpy2
+
+# 步骤 6: 添加一个非 root 用户以增强安全性
+RUN adduser -D ctf
+USER ctf
+
+# 步骤 7: 声明服务监听的端口
+EXPOSE 1337
+
+# 步骤 8: 启动容器时运行的命令
+CMD ["socat", "-T60", "TCP-LISTEN:1337,fork,reuseaddr", "EXEC:python -u ./challenge.py"]
